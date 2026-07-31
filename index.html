@@ -339,6 +339,9 @@ img { max-width: 100%; }
 
 /* ===== Voices / testimonials (new) ===== */
 .voice-section { background: #ede0c8; }
+.voice-video { max-width: 780px; margin: 0 auto 44px; }
+.voice-video video { width: 100%; display: block; border-radius: 20px; aspect-ratio: 16 / 9; object-fit: cover; background: #2a1a10; box-shadow: 0 28px 64px rgba(92, 60, 26, 0.2); }
+.voice-video-cap { margin: 14px 0 0; text-align: center; color: #7c6450; font-size: 0.8rem; font-style: italic; }
 .voice-head { max-width: 640px; margin-bottom: 48px; }
 .voice-head h2 { font-size: clamp(3rem, 5.4vw, 5.2rem); line-height: 0.92; }
 .voice-head > p:last-child { max-width: 500px; margin: 22px 0 0; color: #6f5941; line-height: 1.7; }
@@ -735,6 +738,13 @@ button:focus-visible, summary:focus-visible { outline: 3px solid rgba(214, 164, 
         <p class="eyebrow">CẢM NHẬN NGƯỜI DÙNG</p>
         <h2>Những chia sẻ chân thật</h2>
         <p>Cảm nhận mang tính cá nhân về trải nghiệm sử dụng, không phải cam kết về công dụng.</p>
+      </div>
+      <div class="voice-video">
+        <video controls playsinline preload="metadata" poster="images/testimonial-poster.jpg">
+          <source src="images/testimonial.mp4" type="video/mp4" />
+          Trình duyệt của bạn không hỗ trợ phát video.
+        </video>
+        <p class="voice-video-cap">Chị khách chia sẻ về thói quen dùng Curcumilk P-A mỗi ngày</p>
       </div>
       <div class="voice-grid">
         <article class="voice-card">
