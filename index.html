@@ -452,7 +452,8 @@ button:focus-visible, summary:focus-visible { outline: 3px solid rgba(214, 164, 
   .brand-mark { width: 35px; height: 35px; font-size: 1.5rem; }
   .brand-lockup strong { font-size: 0.74rem; }
   .brand-lockup small { font-size: 0.5rem; }
-  .hero-image { min-height: 390px; object-fit: cover; object-position: center; }
+  .hero-image { aspect-ratio: 4 / 5; min-height: 0; object-fit: cover; object-position: center; }
+  .product-visual { object-position: center; }
   .hero-action-inner { grid-template-columns: 1fr; gap: 20px; padding-block: 26px; }
   .hero-action-inner > p { grid-column: auto; font-size: 0.8rem; }
   .hero-actions { display: grid; }
@@ -526,7 +527,10 @@ button:focus-visible, summary:focus-visible { outline: 3px solid rgba(214, 164, 
   <!-- @section: hero -->
   <section class="hero-section" aria-labelledby="hero-title">
     <h1 id="hero-title" class="sr-only">Curcumilk P-A — Chăm sóc từ bên trong</h1>
-    <img class="hero-image" src="images/hero.jpg" alt="Hộp Curcumilk P-A Sữa nghệ Collagen bên ly sữa nghệ vàng óng bốc khói, củ nghệ tươi và bột nghệ trên nền marble kem" />
+    <picture>
+      <source media="(max-width: 640px)" srcset="images/hero-mobile.jpg" />
+      <img class="hero-image" src="images/hero.jpg" alt="Hộp Curcumilk P-A Sữa nghệ Collagen bên ly sữa nghệ vàng óng bốc khói, củ nghệ tươi và bột nghệ trên nền marble kem" />
+    </picture>
     <div class="hero-action-panel">
       <div class="page-shell hero-action-inner">
         <p>Thức uống dinh dưỡng dạng gói tiện lợi, dễ đưa vào nhịp sống mỗi ngày.</p>
