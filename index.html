@@ -300,6 +300,23 @@ img { max-width: 100%; }
 .benefit-card h3 { margin: 0 0 10px; color: var(--deep-brown); font: 600 1.5rem/1.15 var(--font-display); }
 .benefit-card p { margin: 0; color: #6d5744; font-size: 0.88rem; line-height: 1.7; }
 
+/* two-pillar benefits */
+.pillar { display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr); gap: 6vw; align-items: center; margin-top: 64px; }
+.pillar-reverse .pillar-media { order: 2; }
+.pillar-media img { width: 100%; display: block; border-radius: 22px; aspect-ratio: 4 / 3; object-fit: cover; box-shadow: 0 26px 60px rgba(92, 60, 26, 0.16); }
+.pillar-eyebrow { margin: 0 0 12px; color: var(--caramel); font-size: 0.72rem; font-weight: 800; letter-spacing: 0.14em; }
+.pillar-body h3 { margin: 0 0 22px; font-family: var(--font-display); font-weight: 500; color: var(--deep-brown); font-size: clamp(2rem, 3vw, 2.9rem); line-height: 1.04; letter-spacing: -0.02em; }
+.benefit-rows { list-style: none; margin: 0; padding: 0; }
+.benefit-rows li { padding: 15px 0; border-top: 1px solid rgba(117, 77, 34, 0.16); display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; }
+.benefit-rows li:first-child { border-top: 0; }
+.br-check { width: 28px; height: 28px; border-radius: 50%; background: #2f7d4f; display: grid; place-items: center; }
+.br-check .icon { width: 16px; height: 16px; color: #fff; stroke-width: 3; }
+.benefit-rows strong { color: var(--deep-brown); font-size: 0.9rem; }
+.benefit-rows li > div { color: #7a6350; font-size: 0.86rem; line-height: 1.5; }
+.benefit-rows span { display: block; margin-top: 3px; color: #7a6350; font-size: 0.85rem; line-height: 1.6; }
+.pillar-body blockquote { margin: 24px 0 0; padding: 14px 20px; border-left: 3px solid var(--champagne); background: #f6ecd8; border-radius: 0 12px 12px 0; color: var(--caramel); font: italic 500 1rem/1.55 var(--font-display); }
+.benefit-disclaimer { max-width: 780px; margin: 52px auto 0; text-align: center; color: #857161; font-size: 0.74rem; line-height: 1.65; }
+
 .preparation-section { background: #f4ead8; }
 .section-heading { max-width: 660px; margin-bottom: 52px; }
 .section-heading h2 { font-size: clamp(3.4rem, 5.8vw, 5.8rem); line-height: 0.91; }
@@ -436,6 +453,8 @@ button:focus-visible, summary:focus-visible { outline: 3px solid rgba(214, 164, 
   .trust-grid > div:first-child { border-top: 0; }
   .story-grid, .product-grid, .choice-grid, .faq-grid { grid-template-columns: 1fr; gap: 56px; }
   .benefit-grid, .voice-grid { grid-template-columns: 1fr; }
+  .pillar { grid-template-columns: 1fr; gap: 26px; margin-top: 48px; }
+  .pillar-reverse .pillar-media { order: 0; }
   .product-visual { min-height: 470px; }
   .steps-grid { grid-template-columns: 1fr; }
   .step-card { min-height: 220px; border-left: 0; border-top: 1px solid rgba(106, 71, 37, 0.16); }
@@ -582,48 +601,60 @@ button:focus-visible, summary:focus-visible { outline: 3px solid rgba(214, 164, 
     </div>
   </section>
 
-  <!-- @section: benefits (NEW) -->
+  <!-- @section: benefits (2 pillars) -->
   <section id="loi-ich" class="benefit-section section-space">
     <div class="page-shell">
       <div class="benefit-head">
-        <p class="eyebrow">VÌ SAO NHIỀU NGƯỜI CHỌN</p>
-        <h2>Một ly ấm, gọn trong nhịp sống bận rộn</h2>
-        <p>Curcumilk P-A được yêu thích ở sự tiện lợi và cảm giác dễ chịu khi thưởng thức, phù hợp để đưa vào thói quen mỗi ngày.</p>
+        <p class="eyebrow">HAI DƯỠNG CHẤT VÀNG TRONG MỖI LY</p>
+        <h2>Nghệ Nano Curcumin &amp; Collagen Peptide</h2>
+        <p>Mỗi gói Curcumilk P-A là sự kết hợp của hai nhóm dưỡng chất được nhiều chị em tin dùng: tinh chất nghệ Nano Curcumin và Collagen Peptide, cùng vitamin và khoáng chất theo nhãn.</p>
       </div>
-      <div class="benefit-grid">
-        <article class="benefit-card">
-          <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></div>
-          <h3>Thành phần chọn lọc</h3>
-          <p>Công thức ghi trên nhãn kết hợp tinh bột nghệ, Nano Curcumin, Collagen Peptide cùng hạt sen, linh chi, đông trùng hạ thảo.</p>
-        </article>
-        <article class="benefit-card">
-          <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
-          <h3>Pha nhanh, dễ dùng</h3>
-          <p>Chỉ một gói với nước nóng là có ngay ly thức uống ấm áp. Không cần dụng cụ cầu kỳ, hợp cả khi bận rộn.</p>
-        </article>
-        <article class="benefit-card">
-          <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
-          <h3>Một khoảng cho riêng mình</h3>
-          <p>Một thói quen nhỏ, dịu dàng giữa ngày dài, giúp bạn có lý do dừng lại vài phút và chăm sóc bản thân.</p>
-        </article>
-        <article class="benefit-card">
-          <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div>
-          <h3>Gói riêng, tiện mang theo</h3>
-          <p>Đóng gói từng gói 25 g, dễ để trong túi xách hay ngăn bàn, tiện dùng ở nhà, nơi làm việc hay khi đi xa.</p>
-        </article>
-        <article class="benefit-card">
-          <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
-          <h3>Thông tin minh bạch</h3>
-          <p>Cách dùng, thành phần và lưu ý đều được trình bày theo nhãn để bạn chủ động tìm hiểu trước khi lựa chọn.</p>
-        </article>
-        <article class="benefit-card">
-          <div class="benefit-icon"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <h3>Hợp với nếp mỗi ngày</h3>
-          <p>Theo nhãn, dùng 2–3 lần mỗi ngày. Dễ tạo thành thói quen đều đặn mà không xáo trộn lịch sinh hoạt.</p>
-        </article>
+
+      <!-- Trụ 1: Nghệ / Nano Curcumin -->
+      <div class="pillar">
+        <div class="pillar-media">
+          <img src="images/benefit-turmeric.jpg" alt="Củ nghệ tươi, bột nghệ vàng và ly sữa nghệ ấm bốc khói" />
+        </div>
+        <div class="pillar-body">
+          <p class="pillar-eyebrow">TINH CHẤT NGHỆ · NANO CURCUMIN</p>
+          <h3>Chống oxy hoá, nâng niu làn da sáng khoẻ</h3>
+          <ul class="benefit-rows">
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Chống oxy hoá mạnh</strong> (được ghi nhận cao hơn nhiều lần vitamin E)<span>Hỗ trợ da sáng, đều màu hơn, hạn chế xỉn màu theo thời gian.</span></div></li>
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Dạng Nano hấp thu tốt hơn nghệ thường tới ~40 lần</strong><span>Uống ít vẫn thấm nhanh, không lo vàng răng vàng da như bột nghệ pha thô.</span></div></li>
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Đặc tính kháng viêm tự nhiên</strong><span>Góp phần làm dịu làn da, giảm cảm giác sưng đỏ, "nóng" những ngày da nhạy cảm.</span></div></li>
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Hỗ trợ tái tạo mô, làm lành</strong><span>Hỗ trợ làn da mịn màng, đều màu và trông khoẻ hơn.</span></div></li>
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Nâng niu niêm mạc dạ dày</strong><span>Ăn ngon, bụng nhẹ, đẹp từ đường ruột ra.</span></div></li>
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Nghệ quen thuộc trong dân gian</strong><span>Từ lâu được các mẹ dùng để bồi bổ, phục hồi sau sinh.</span></div></li>
+          </ul>
+          <blockquote>“Nghệ chống oxy hoá mạnh nên da đỡ xỉn, đều màu hơn, cái này chị em nám hay mê.”</blockquote>
+        </div>
       </div>
+
+      <!-- Trụ 2: Collagen Peptide -->
+      <div class="pillar pillar-reverse">
+        <div class="pillar-media">
+          <img src="images/benefit-collagen.jpg" alt="Người phụ nữ thảnh thơi bên ly sữa nghệ Collagen ấm" />
+        </div>
+        <div class="pillar-body">
+          <p class="pillar-eyebrow">COLLAGEN PEPTIDE · VITAMIN C</p>
+          <h3>Bù collagen, giữ nét căng mượt theo năm tháng</h3>
+          <ul class="benefit-rows">
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Từ tuổi 25 cơ thể mất ~1% collagen mỗi năm</strong><span>Bổ sung đều giúp da trông căng mọng, đầy đặn, đỡ hóp má.</span></div></li>
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Collagen Peptide phân tử nhỏ</strong><span>Dễ hấp thu, uống đều đặn nên cảm nhận rõ hơn.</span></div></li>
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Hỗ trợ độ đàn hồi của da</strong><span>Góp phần làm mờ nếp nhăn, rãnh cười, vết chân chim ở đuôi mắt.</span></div></li>
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Giữ ẩm sâu</strong><span>Da mềm mịn, dễ chịu khi chạm, bớt khô ráp.</span></div></li>
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Nuôi dưỡng tóc &amp; móng</strong><span>Nhiều chị chia sẻ tóc con mọc nhiều hơn, móng chắc khoẻ hơn.</span></div></li>
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Hỗ trợ sụn khớp</strong><span>Ngoài 40 hay mỏi gối, collagen góp phần cho khớp vận động nhẹ nhàng hơn.</span></div></li>
+            <li><span class="br-check"><svg class="icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span><div><strong>Thường kèm Vitamin C</strong><span>Hỗ trợ làn da sáng rạng rỡ từ bên trong.</span></div></li>
+          </ul>
+          <blockquote>“25 tuổi là bắt đầu tụt collagen rồi, mình bù lại để da đừng xẹp đi, da mềm mượt hẳn, sờ vào là biết.”</blockquote>
+        </div>
+      </div>
+
+      <p class="benefit-disclaimer">Thông tin về thành phần được trình bày theo nhãn và mang tính tham khảo, không phải tuyên bố công dụng chữa bệnh. Hiệu quả có thể khác nhau tùy cơ địa mỗi người. Sản phẩm là thực phẩm bổ sung, không phải là thuốc và không có tác dụng thay thế thuốc chữa bệnh.</p>
     </div>
   </section>
+
 
   <!-- @section: product-information -->
   <section id="san-pham" class="product-section section-space">
