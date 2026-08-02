@@ -400,6 +400,7 @@ img { max-width: 100%; }
 .combo-info span { color: #8a715b; font-size: 0.76rem; }
 .combo-price { color: var(--deep-brown); font-weight: 700; font-size: 1rem; }
 .combo-tag { padding: 3px 9px; border-radius: 999px; background: var(--turmeric); color: #3d2a0e; font-size: 0.64rem; font-weight: 800; }
+.combo-tag.tag-ship { background: #2f7d4f; color: #eafff2; }
 
 .order-form { padding: clamp(40px, 5vw, 56px); background: var(--deep-brown); color: #f9eddb; display: flex; flex-direction: column; }
 .order-form h3 { margin: 0 0 6px; color: #fff; font: 500 2rem/1 var(--font-display); }
@@ -835,26 +836,26 @@ button:focus-visible, summary:focus-visible { outline: 3px solid rgba(214, 164, 
           <p class="order-lead">Chọn số lượng phù hợp và để lại thông tin, bộ phận tư vấn sẽ liên hệ xác nhận đơn và giao hàng tận nơi (thanh toán khi nhận hàng).</p>
 
           <div class="price-block">
-            <span class="price-now" id="unitPriceLabel">450.000đ</span>
+            <span class="price-now" id="unitPriceLabel">486.000đ</span>
             <span class="price-save">MUA 3 TẶNG 1</span>
           </div>
-          <p class="price-unit">Giá cho 1 hộp 20 gói · 25 g/gói</p>
+          <p class="price-unit">Giá 1 hộp 20 gói · 25 g/gói · giao tận nơi, trả tiền khi nhận</p>
 
           <div class="combo-list" id="comboList">
-            <div class="combo-item selected" data-qty="1" data-unit="450000" data-gift="0">
+            <div class="combo-item selected" data-qty="1" data-total="486000" data-gift="0">
               <div class="combo-radio"></div>
               <div class="combo-info"><strong>1 Hộp</strong><span>Dùng thử ~10 ngày</span></div>
-              <div class="combo-price">450.000đ</div>
+              <div class="combo-price">486.000đ</div>
             </div>
-            <div class="combo-item" data-qty="2" data-unit="450000" data-gift="0">
+            <div class="combo-item" data-qty="2" data-total="950000" data-gift="0">
               <div class="combo-radio"></div>
-              <div class="combo-info"><strong>2 Hộp</strong><span>Dùng đều đặn · <span class="combo-tag">PHỔ BIẾN</span></span></div>
-              <div class="combo-price">900.000đ</div>
+              <div class="combo-info"><strong>2 Hộp</strong><span>Dùng đều đặn · <span class="combo-tag">PHỔ BIẾN</span> · <span class="combo-tag tag-ship">FREE SHIP</span></span></div>
+              <div class="combo-price">950.000đ</div>
             </div>
-            <div class="combo-item" data-qty="3" data-unit="450000" data-gift="1">
+            <div class="combo-item" data-qty="3" data-total="1450000" data-gift="1">
               <div class="combo-radio"></div>
               <div class="combo-info"><strong>3 Hộp <span class="combo-tag">TẶNG 1 HỘP</span></strong><span>Nhận 4 hộp · lợi nhất</span></div>
-              <div class="combo-price">1.350.000đ</div>
+              <div class="combo-price">1.450.000đ</div>
             </div>
           </div>
         </div>
@@ -974,51 +975,56 @@ var ORDER_ENDPOINT = "";
   document.getElementById("phoneLink").href = "tel:" + CONTACT_PHONE;
   document.getElementById("zaloLink").href = ZALO_LINK;
 
-  // combo + quantity + total
+  // combo + quantity + total (giá trọn gói theo từng combo)
+  var BASE_UNIT = 486000; // giá 1 hộp, dùng khi số lượng nằm ngoài combo
   var qty = 1;
-  var unit = 450000;
+  var total = 486000;
   var gift = 0;
   var comboItems = Array.prototype.slice.call(document.querySelectorAll(".combo-item"));
   var qtyVal = document.getElementById("qtyVal");
   var totalVal = document.getElementById("totalVal");
   var unitLabel = document.getElementById("unitPriceLabel");
-
   var giftNote = document.getElementById("giftNote");
+
+  function comboByQty(q) {
+    return comboItems.filter(function (c) { return parseInt(c.getAttribute("data-qty"), 10) === q; })[0];
+  }
   function syncTotal() {
     qtyVal.textContent = qty;
-    totalVal.textContent = fmt(unit * qty);
-    unitLabel.textContent = fmt(unit);
+    totalVal.textContent = fmt(total);
+    unitLabel.textContent = fmt(BASE_UNIT);
     giftNote.style.display = gift ? "block" : "none";
   }
   function selectCombo(item) {
     comboItems.forEach(function (c) { c.classList.remove("selected"); });
     item.classList.add("selected");
     qty = parseInt(item.getAttribute("data-qty"), 10);
-    unit = parseInt(item.getAttribute("data-unit"), 10);
+    total = parseInt(item.getAttribute("data-total"), 10);
     gift = parseInt(item.getAttribute("data-gift") || "0", 10);
     syncTotal();
   }
-  comboItems.forEach(function (item) {
-    item.addEventListener("click", function () { selectCombo(item); });
-  });
-  document.getElementById("qtyPlus").addEventListener("click", function () {
-    qty++; matchComboByQty(); syncTotal();
-  });
-  document.getElementById("qtyMinus").addEventListener("click", function () {
-    if (qty > 1) { qty--; matchComboByQty(); syncTotal(); }
-  });
-  function matchComboByQty() {
-    var match = comboItems.filter(function (c) { return parseInt(c.getAttribute("data-qty"), 10) === qty; })[0];
-    if (match) {
-      unit = parseInt(match.getAttribute("data-unit"), 10);
-      gift = parseInt(match.getAttribute("data-gift") || "0", 10);
+  function recomputeForQty() {
+    var m = comboByQty(qty);
+    if (m) {
+      total = parseInt(m.getAttribute("data-total"), 10);
+      gift = parseInt(m.getAttribute("data-gift") || "0", 10);
     } else {
+      total = BASE_UNIT * qty;
       gift = 0;
     }
     comboItems.forEach(function (c) {
       c.classList.toggle("selected", parseInt(c.getAttribute("data-qty"), 10) === qty);
     });
   }
+  comboItems.forEach(function (item) {
+    item.addEventListener("click", function () { selectCombo(item); });
+  });
+  document.getElementById("qtyPlus").addEventListener("click", function () {
+    qty++; recomputeForQty(); syncTotal();
+  });
+  document.getElementById("qtyMinus").addEventListener("click", function () {
+    if (qty > 1) { qty--; recomputeForQty(); syncTotal(); }
+  });
   syncTotal();
 
   // submit
@@ -1031,8 +1037,8 @@ var ORDER_ENDPOINT = "";
       phone: form.phone.value.trim(),
       address: form.address.value.trim(),
       quantity: qty,
-      unit_price: unit,
-      total: unit * qty,
+      unit_price: Math.round(total / qty),
+      total: total,
       gift_box: gift ? 1 : 0,
       product: "Curcumilk P-A"
     };
